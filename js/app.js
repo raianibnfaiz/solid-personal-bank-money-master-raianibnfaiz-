@@ -19,6 +19,10 @@ document.getElementById('calculate-btn').addEventListener('click', function () {
     const foodExpenseNumber = getAmountOfExpenses('food');
     const rentExpenseNumber = getAmountOfExpenses('rent');
     const clothesExpenseNumber = getAmountOfExpenses('clothes');
+    if (foodExpenseNumber < 0 || rentExpenseNumber < 0 || clothesExpenseNumber < 0) {
+        const errorMessage = "Input number not valid. Please input a valid number";
+        alert(errorMessage);
+    }
     const fullCost = foodExpenseNumber + rentExpenseNumber + clothesExpenseNumber;
     console.log(fullCost);
     const totalCost = document.getElementById('total-expenses');
@@ -43,5 +47,12 @@ document.getElementById('save-btn').addEventListener('click', function () {
     const saving = document.getElementById('saving-amount');
     saving.innerText = savingsOfSalary;
     const remainingBalanceAfterSaving = document.getElementById('remain-after-saving');
-    remainingBalanceAfterSaving.innerText = parseFloat(remainingBalanceText) - savingsOfSalary;
+    const remainingBalanceNumber = parseFloat(remainingBalanceText)
+    remainingBalanceAfterSaving.innerText = remainingBalanceNumber - savingsOfSalary;
+    if (savingsOfSalary > remainingBalanceNumber) {
+        var message = "This percent of money cannot be saved because there is not enough money in the remaining balance";
+
+        alert(message);
+        remainingBalanceAfterSaving.innerText = 'Not enough balance';
+    }
 })
