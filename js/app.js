@@ -24,14 +24,18 @@ document.getElementById('calculate-btn').addEventListener('click', function () {
         alert(errorMessage);
     }
     const fullCost = foodExpenseNumber + rentExpenseNumber + clothesExpenseNumber;
-    console.log(fullCost);
+    //console.log(fullCost);
     const totalCost = document.getElementById('total-expenses');
     totalCost.innerText = fullCost;
-    console.log(totalCost.innerText);
+    //console.log(totalCost.innerText);
 
 
     const salary = getSalary();
-    console.log(salary);
+    //console.log(salary);
+    if (fullCost > salary) {
+        const warningMessage = "There is not enough balance available. You cannot spend this amount of money";
+        alert(warningMessage);
+    }
     const remainingBalanceText = document.getElementById('total-balance')
     remainingBalanceText.innerText = salary - fullCost;
 
